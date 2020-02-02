@@ -1,0 +1,620 @@
+<!--finish face 2, finish fae 3, make the bot darker-->
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<title>I need this cash</title>
+	<style type="text/css">
+		body{
+			background-image: url("spacebg.jpg");
+			background-size: auto;
+			background-position: top;
+			background-repeat: repeat;
+			backface-visibility: visible;
+			background-color: #02012d;
+			font-family: verdana;
+			color: black;
+			overflow: hidden;
+			font-weight: bold;
+		}
+		#startPos, #movePos{
+			position: absolute;
+			top: 0;
+			height: 400px;
+			width: 300px;
+			bottom: 200px;
+			margin: auto;
+			right: 0;
+			left: 0;
+		}
+		#startPos:hover{transform: scale(1.2)}
+		#dancePos{
+			margin: auto;
+			right: 0;
+			left: 0;
+			position: relative;
+			top: 320px;
+			height: 100px;
+			width: 100px;
+			bottom: 0px;
+			animation-name: dance;
+			animation-timing-function: ease-in-out;
+			animation-direction: alternate;
+			animation-duration: 3.5s;
+			animation-iteration-count: infinite;
+		}
+		@keyframes dance{
+			0%{transform: translate(35vw, 0vh);}
+			50%{transform: translate(0px, -30vh);}
+			100%{transform: translate(-35vw, 0vh);}
+		}
+		#bodyRect{
+			position: absolute;
+			margin: auto;
+			top: 0;
+			bottom: 0px;
+			right: 0;
+			left: 0;
+			border-left-width: 12px;
+			border-bottom-width: 12px;
+			border-top-width: 12px;
+			border-right-width: 12px;
+			border-style: solid;
+			border-radius: 10px; 
+			height: 208px;
+			width: 128px;
+			border-color: silver;
+			background-color: black;
+		}
+		#hoverBox{
+			position: absolute;
+			margin: auto;
+			top: 223px;
+			bottom: 0px;
+			right: 0;
+			left: 0;
+			height: 15px;
+			width: 40px;
+			border-style: solid;
+			border-width: 2px;
+			border-color: black;
+			background-color: silver;
+		}
+		#hoverSig1, #hoverSig2, #hoverSig3{
+			border-radius: 50%;
+			border-style: solid;
+			border-left-color: transparent;
+			border-right-color: transparent;
+			border-top-color: transparent; 
+			border-bottom-width: 5px;
+			border-bottom-color: white;
+			position: absolute;
+			margin: auto;
+			bottom: 0;
+			left: 0;
+
+			animation-name: sig;
+			animation-duration: 1s;
+			animation-iteration-count: infinite;;
+			animation-timing-function: linear;
+		}
+		#hoverSig1{animation-delay: 0s;}
+		#hoverSig2{animation-delay: .33s;}
+		#hoverSig3{animation-delay: .66s;}
+		@keyframes sig{
+			0%{
+				right: 0px;
+				top: 235px;
+				height: 30px;
+				width: 36px;
+				opacity: 1;
+			}
+			33%{
+				right: 0px;
+				top: 225px;
+				height: 80px;
+				width: 85px;
+				opacity: .7;
+			}
+			66%{
+				right: 0px;
+				top: 257px;
+				left: -5px;
+				bottom: 0;
+				height: 105px;
+				width: 135px;
+				opacity: .4;
+			}
+			100%{
+				right: 0px;
+		   	 	top: 272px;
+    			left: -45px;
+			    bottom: 0;
+			    height: 150px;
+	    		width: 205px;
+	    		opacity: 0;
+			}
+		}
+		#danceMouth{
+			position: absolute;
+			margin: auto;
+			bottom: 0;
+			left: 0;
+			border-bottom-left-radius: 400px;
+			border-bottom-right-radius: 400px;
+			background-color: white;
+			height: 50px;
+			width: 80px;
+			top: 90px;
+			right: 0;
+			visibility: hidden;
+		}
+		#ear1, #ear2{
+			position: absolute;
+			margin: auto;
+			top: 0px;
+			bottom: 100px;
+			height: 80px;
+			width: 45px;
+			background-color: white;
+		}
+		/*@keyframes blink{
+			0%{background-color: white}
+			30%{background-color: white}
+			31%{background-color: black}
+			33%{background-color: black}
+			34%{background-color: white}
+			44%{background-color: white}
+			45%{background-color: black}
+			47%{background-color: black}
+			48%{background-color: white}
+			100%{background-color: white}			
+		}*/
+		@keyframes blink{
+			0%{opacity: 1}
+			30%{opacity: 1}
+			31%{opacity: 0}
+			33%{opacity: 0}
+			34%{opacity: 1}
+			44%{opacity: 1}
+			45%{opacity: 0}
+			47%{opacity: 0}
+			48%{opacity: 1}
+			100%{opacity: 1}			
+		}
+		#ear1{
+			left: 60px;
+			right: 0;
+			border-bottom-left-radius: 50%;
+			border-bottom-right-radius: 50%;
+			border-top-left-radius: 50%;
+			border-top-right-radius: 50%; 
+		}
+		#ear2{
+			border-bottom-left-radius: 50%;
+			border-bottom-right-radius: 50%;
+			border-top-left-radius: 50%;
+			border-top-right-radius: 50%;
+			left: 0px;
+			right: 60px;
+		}
+		#catEye1, #catEye2{
+			position: absolute;
+			margin: auto;
+			top: 0px;
+			bottom: 50px;
+			height: 20px;
+			width: 30px;
+			background-color: black;
+			animation-name: blink;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			animation-duration: 3s;
+			animation-timing-function: linear;
+		}
+		#catEye1{
+			left: -45px;
+			right: 0;
+			border-bottom-left-radius: 70%;
+			border-bottom-right-radius: 0%;
+			border-top-left-radius: 0%;
+			border-top-right-radius: 75%; 
+			transform: rotate(-5deg);
+		}
+		#catEye2{
+			left: 0px;
+			right: -45px;
+			border-bottom-left-radius: 0%;
+			border-bottom-right-radius: 70%;
+			border-top-left-radius: 75%;
+			border-top-right-radius: 0%;
+			transform: rotate(5deg); 
+		}
+		#catEye1Dance, #catEye2Dance{
+			position: absolute;
+			margin: auto;
+			top: 0px;
+			bottom: -5px;
+			height: 40px;
+			width: 35px;
+			background-color: transparent;
+			border-radius: 50%;
+			border-style: solid;
+			border-width: 4px;
+			border-top-color: black;
+			border-bottom-color: transparent;
+			border-right-color: transparent;
+			border-left-color: transparent;
+			/*animation-name: blink;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			animation-duration: 3s;
+			animation-timing-function: linear;*/
+		}
+		#catEye1Dance{
+			left: -45px;
+			right: 0px;
+		}
+		#catEye2Dance{
+			left: 0px;
+			right: -45px;
+		}
+		#catHead{
+			position: absolute;
+			margin: auto;
+			top: 0px;
+			bottom: 30px;
+			left: 0;
+			right: 0;
+			height: 95px;
+			width: 110px;
+			border-radius: 50%;
+			background-color: white;
+			border-width: 2px;
+			border-color: black;
+			border-style: solid;
+		}
+		#face2{
+			visibility: hidden;
+		}
+		#eye1, #eye2{
+			position: absolute;
+			margin: auto;
+			top: 0px;
+			bottom: 70px;
+			height: 70px;
+			width: 40px;
+			background-color: white;
+			animation-name: blink;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			animation-duration: 3s;
+			animation-timing-function: linear;
+		}
+		#eye1{
+			left: 55px;
+			right: 0;
+		}
+		#eye2{
+			left: 0px;
+			right: 55px;	
+		}
+		#mouth{
+			position: absolute;
+			margin: auto;
+			top: 80px;
+			bottom: 0px;
+			left: 0;
+			right: 0;
+			height: 0px;
+			width: 15px;
+			border-color: white;
+			border-width: 10px;
+			border-style: solid;
+			visibility: hidden;
+			background-color: white;
+			animation-name: mouth;
+			animation-duration: 4s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
+		#circle1, #circle2, #circle3, #circle4{
+			position: absolute;
+			margin: auto;
+			top: 0px;
+			bottom: 55px;
+			left: 0;
+			right: 0;
+			border-radius: 50%;
+		}
+		#circle1{
+			height: 110px;
+			width: 110px;
+			background-color: white;
+		}
+		#circle2{
+			height: 80px;
+			width: 80px;
+			background-color: black;
+		}
+		#circle3{
+			height: 50px;
+			width: 50px;
+			background-color: white;
+		}
+		#circle4{
+			height: 20px;
+			width: 20px;
+			background-color: black;
+			animation-name: circleAnimation;
+			animation-duration: 2s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
+		@keyframes circleAnimation{
+			0%{
+				height: 20px;
+				width: 20px;
+			}
+			84%{
+				height: 112px;
+				width: 112px;
+			}
+			100%{
+				height: 112px;
+				width: 112px;
+			}
+		}
+		#face3{
+			visibility: hidden;
+		}
+		@keyframes mouth{
+			0%{
+				width: 15px;
+				border-width: 8px;
+			}
+			50%{
+				width: 25px;
+				border-width: 10px;
+			}
+			100%{
+				width: 15px;
+				border-width: 8px;
+			}
+		}
+		#leftShoulder, #rightShoulder{
+			margin: 0px;
+			height: 40px;
+			width: 32px;
+			position: absolute;
+			background-color: grey;
+			border-width: 2px;
+			border-style: solid;
+			border-color: black;
+			margin: auto;
+			top: 0;
+			bottom: 95px;
+			z-index: -1;
+			animation-timing-function: ease-in-out;
+			animation-duration: 1.75s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+		}
+		@keyframes upAndDown{
+			0%{transform: translate(0, -40px);}
+			50%{transform: translate(0, 40px);}
+			100%{transform: translate(0, -40px);}
+		}
+		#leftShoulder{
+			border-top-left-radius: 140%;
+			border-bottom-left-radius: 80%;
+			right: 0px;
+			left: -188px;
+		}
+		#rightShoulder{
+			border-top-right-radius: 140%;
+			border-bottom-right-radius: 80%;
+			right: -188px;
+			left: 0px;
+		}
+		#leftArm, #rightArm, #dancingLeftArm, #dancingRightArm{
+			height: 115px;
+			width: 30px;
+			background-color: silver;
+			position: absolute;
+			margin: auto;
+			border-width: 2px;
+			border-style: solid;
+			border-color: black;
+		}
+		#leftArm, #rightArm{
+			top: 100px;
+			bottom: 0;
+		}
+		#dancingLeftArm, #dancingRightArm{
+			top: 0;
+			bottom: 100px;
+		}
+		#leftArm, #dancingRightArm{
+			border-top-right-radius: 60%;
+			border-top-left-radius: 200%;
+			border-bottom-left-radius: 55px;
+    		border-bottom-right-radius: 20px;	
+		}
+		#leftArm, #dancingLeftArm{
+			right: 0px;
+			left: -12px;
+		}
+		#rightArm, #dancingLeftArm{
+			border-top-right-radius: 200%;
+			border-top-left-radius: 60%;
+			border-bottom-left-radius: 20px;
+   			border-bottom-right-radius: 55px;
+		}
+		#rightArm, #dancingRightArm{
+			right: -12px;
+			left: 0px;
+		}
+		#dancingLeftArm, #dancingRightArm{transform: rotate(180deg);}
+		#armBand{
+			height: 40px;
+			width: 30px;
+			background-color: #2D2D3A;
+			position: absolute;
+			margin: auto;
+			top: 25px;
+			bottom: 0;
+			right: 0;
+			left: 0;
+		}
+		#menu{
+			width: 600px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			top: 70vh;
+			margin: auto;
+			height: 30vh;
+			padding: 0;
+		}
+		#buttonDance, #buttonTts, #buttonMove, #buttonCredits{
+			padding: 1vh;
+			border-style: solid;
+			border-width: 2px;
+			border-color: black;
+			border-radius: 7px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			height: 5vh;
+			width: 600px;
+			background-color: #007F7F;
+			opacity: 0.6;
+			font-size: 30px;
+			text-align: center;
+			}
+		#buttonDance{bottom: 25vh;}
+		#buttonTts{bottom: 17vh;}
+		#buttonDance:hover{opacity: 1}
+		#buttonTts:hover{opacity: 1}
+		#buttonSubmitTts:hover{opacity: 1}
+		#buttonMove:hover{opacity: 1}
+		#buttonCredits:hover{opacity: 1}
+
+		#ttsForm{
+			height: 65px;
+			width: 600px;
+			visibility: hidden;
+			position: absolute;
+			color: white;
+			padding: 0px;
+			margin: auto;
+			top: 0;
+			bottom: 250px;
+			left: 50px;
+			right: 0;
+		}
+		#buttonSubmitTts{
+			margin-left: 403px;
+			padding: 0.5vh;
+			border-style: solid;
+			border-width: 2px;
+			border-color: black;
+			border-radius: 7px;
+			height: 5vh;
+			width: 165px;
+			background-color: #007F7F;
+			opacity: 0.6;
+			font-size: 25px;
+			text-align: center;
+		}
+		#buttonMove{bottom: 9vh;}
+		#buttonCredits{bottom: 1vh;}
+		#creditsText{
+			padding: 4px;
+			color: white;
+			visibility: hidden;
+			font-size: 10px;
+		}
+		#textDance{
+			height: 5vh;
+			width: 600px;
+			color: #007F7F;
+			text-align: center;
+			position: absolute;
+			top: -40px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;	
+			font-size: 45px;
+			visibility: hidden;
+			font
+		}
+
+	</style>
+</head>
+<body>
+	<div id="startPos">
+		<div id="bodyRect">
+			<div id="hoverBox"></div>
+			<div id="hoverSig1"></div>
+			<div id="hoverSig2"></div>
+			<div id="hoverSig3"></div>
+			<div id="leftShoulder">
+				<div id="leftArm">
+					<div id="armBand"></div>
+				</div>
+			</div>
+			<div id="rightShoulder">
+				<div id="rightArm">
+					<div id="armBand"></div>
+				</div>
+			</div>
+			<div id="screen">
+				<p id="creditsText">
+					This is Insomni, a bot made by Aditya kotari for NITS Cyberbot 3.0. The bot is named after all the sleep I've lost over it, and also all the sleep I lose every night staring at my phone. Thanks to all the people who gave me feedback on this, constructive or not. 
+				</p>
+				<div id="danceMouth"></div>
+				<div id="eye1"></div>
+				<div id="eye2"></div>
+				<div id="mouth"></div>
+				<div id="face3">
+					<div id="circle1"></div>
+					<div id="circle2"></div>
+					<div id="circle3"></div>
+					<div id="circle4"></div>
+				</div>
+				<div id="face2">
+					<div id="ear1"></div>
+					<div id="ear2"></div>
+					<div id="catHead"></div>
+					<div id="catEye1"></div>
+					<div id="catEye2"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="menu">
+		<div id="buttonDance" type="buttonDance" onclick="dance()">Make me dance</div>
+		<div id="buttonTts" type="buttonTts" onclick="ttsvisible()">Hear me say something</div>
+		<div id="ttsForm" action="tts()" target="self">
+  			type anything that you want me to say here: <input type="text" name="tInput"><br>
+  			<button id="buttonSubmitTts" type="buttonSubmitTts" onclick="tts()">Submit</button>
+ 		</div>
+ 		<div id="buttonMove" type="buttonMove" onclick="faceChange()">Change my face</div>
+ 		<div id="buttonCredits" type="buttonCredits" onclick="credits()">Credits</div>
+ 		<p id="textDance">Turn up the volume!</p>
+	</div>
+	<audio id="myAudio" loop>
+		<source src="easy_love_lauv.mp3" type="audio/ogg">
+  		Your browser does not support the audio element.
+	</audio>
+	<script src="cyberbotV3.js"></script>
+</body>
+</html>
