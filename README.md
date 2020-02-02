@@ -1,2 +1,2 @@
 # insomni
-CSS animations project for Cyberbot 3.0. 
+CSS animations project made for Cyberbot 3.0. 
